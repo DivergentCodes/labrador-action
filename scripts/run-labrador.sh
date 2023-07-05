@@ -16,6 +16,10 @@ if [ -n "$GHACTION_LABRADOR_CONFIG_FILE" ]; then
     OPTIONAL_ARGS=" --config $GHACTION_LABRADOR_CONFIG_FILE "
 fi
 
+if [ -n "$GHACTION_LABRADOR_AWS_SSM_PARAM" ]; then
+    echo "Received AWS SSM Parameters to fetch: $GHACTION_LABRADOR_AWS_SSM_PARAM"
+fi
+
 # Run Labrador.
 echo "./labrador fetch --verbose --outfile $GHACTION_LABRADOR_OUTFILE $OPTIONAL_ARGS"
 ./labrador fetch --verbose --outfile "$GHACTION_LABRADOR_OUTFILE" $OPTIONAL_ARGS

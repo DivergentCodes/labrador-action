@@ -5,7 +5,7 @@ inputs:
   config:
     description: 'Specify an alternative config file in the repo.'
     required: false
-  aws-ssm-parameters:
+  aws-ssm-parameter:
     description: 'AWS SSM Parameter Store paths to fetch values from.'
     required: false
 
@@ -40,5 +40,5 @@ runs:
       shell: bash
       env:
         GHACTION_LABRADOR_CONFIG_FILE: ${{ inputs.config }}
-        GHACTION_LABRADOR_AWS_PS: ${{ inputs.aws-ssm-parameters }}
+        GHACTION_LABRADOR_AWS_SSM_PARAM: ${{ inputs.aws-ssm-parameter }}
       run: run-labrador.sh
