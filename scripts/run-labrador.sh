@@ -19,7 +19,9 @@ fi
 if [ -n "$GHACTION_LABRADOR_AWS_SSM_PARAM" ]; then
     echo "Received AWS SSM Parameters to fetch:"
     while IFS= read -r resource; do
-        echo "... $resource ..."
+        if [[ -n $(echo $resource | tr -d '[:space:]') ]]; then
+            echo "    ...$resource..."
+        fi
     done <<< "$GHACTION_LABRADOR_AWS_SSM_PARAM"
 fi
 
