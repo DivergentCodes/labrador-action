@@ -17,5 +17,5 @@ if [ -n "$GHACTION_LABRADOR_CONFIG_FILE" ]; then
 fi
 
 # Run Labrador.
-./labrador fetch \
-    --verbose --outfile "$GHACTION_LABRADOR_OUTFILE" $OPTIONAL_ARGS
+echo "./labrador fetch --verbose --outfile $GHACTION_LABRADOR_OUTFILE $OPTIONAL_ARGS"
+./labrador fetch --verbose --outfile "$GHACTION_LABRADOR_OUTFILE" $OPTIONAL_ARGS
