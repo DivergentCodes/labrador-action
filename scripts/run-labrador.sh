@@ -11,7 +11,8 @@ fi
 
 # Assemble optional CLI args.
 OPTIONAL_ARGS=""
-if [ -n $GHACTION_LABRADOR_CONFIG_FILE ]; then
+if [ -n "$GHACTION_LABRADOR_CONFIG_FILE" ]; then
+    echo "Using alternate config file: $GHACTION_LABRADOR_CONFIG_FILE"
     OPTIONAL_ARGS=" --config $GHACTION_LABRADOR_CONFIG_FILE "
 fi
 
@@ -19,4 +20,4 @@ fi
 ./labrador fetch \
     --verbose \
     --outfile "$GHACTION_LABRADOR_OUTFILE" \
-    $OPTIONAL_ARGS
+    $OPTIONAL_ARGS ;
