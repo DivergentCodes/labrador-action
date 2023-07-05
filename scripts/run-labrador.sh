@@ -23,6 +23,7 @@ if [ -n "$GHACTION_LABRADOR_AWS_SSM_PARAM" ]; then
     echo "Received AWS SSM Parameters to fetch:"
     while IFS= read -r resource; do
         if [[ -n $(echo $resource | tr -d '[:space:]') ]]; then
+            echo "    $resource"
             OPTIONAL_ARGS="$OPTIONAL_ARGS --aws-param $resource "
         fi
     done <<< "$GHACTION_LABRADOR_AWS_SSM_PARAM"
@@ -34,6 +35,7 @@ if [ -n "$GHACTION_LABRADOR_AWS_SM_SECRET" ]; then
     echo "Received AWS Secrets Manager secrets to fetch:"
     while IFS= read -r resource; do
         if [[ -n $(echo $resource | tr -d '[:space:]') ]]; then
+            echo "    $resource"
             OPTIONAL_ARGS="$OPTIONAL_ARGS --aws-secret $resource "
         fi
     done <<< "$GHACTION_LABRADOR_AWS_SM_SECRET"
