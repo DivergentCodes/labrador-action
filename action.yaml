@@ -2,8 +2,11 @@
 name: 'Labrador Action'
 description: 'Fetch and load values as environment variables'
 inputs:
+  config:
+    description: 'Specify an alternative config file in the repo.'
+    required: false
   aws-ssm-parameters:
-    description: 'SSM Parameter Store paths to fetch values from.'
+    description: 'AWS SSM Parameter Store paths to fetch values from.'
     required: false
 
 branding:
@@ -14,12 +17,13 @@ runs:
   using: 'composite'
   steps:
 
+      # This is required to find the .labrador.yaml config file.
     - name: Checkout repository code
       uses: actions/checkout@v3
 
+      # This is required for the action to find the shell scripts.
     - name: "Add this action's path to executable path"
       shell: bash
-      # This is required for the action to find the shell scripts.
       run: |
         echo "${{ github.action_path }}" >> $GITHUB_PATH
         echo "${{ github.action_path }}/scripts" >> $GITHUB_PATH
@@ -35,5 +39,6 @@ runs:
     - name: Run Labrador
       shell: bash
       env:
+        GHACTION_LABRADOR_CONFIG_FILE: ${{ inputs.config }}
         GHACTION_LABRADOR_AWS_PS: ${{ inputs.aws-ssm-parameters }}
       run: run-labrador.sh
