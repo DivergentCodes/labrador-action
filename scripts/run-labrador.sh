@@ -17,7 +17,10 @@ if [ -n "$GHACTION_LABRADOR_CONFIG_FILE" ]; then
 fi
 
 if [ -n "$GHACTION_LABRADOR_AWS_SSM_PARAM" ]; then
-    echo "Received AWS SSM Parameters to fetch: $GHACTION_LABRADOR_AWS_SSM_PARAM"
+    echo "Received AWS SSM Parameters to fetch:"
+    while IFS= read -r resource; do
+        echo "... $resource ..."
+    done <<< "$GHACTION_LABRADOR_AWS_SSM_PARAM"
 fi
 
 # Run Labrador.
