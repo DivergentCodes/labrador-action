@@ -18,6 +18,4 @@ fi
 
 # Run Labrador.
 ./labrador fetch \
-    --verbose \
-    --outfile "$GHACTION_LABRADOR_OUTFILE" \
-    $OPTIONAL_ARGS ;
+    --verbose --outfile "$GHACTION_LABRADOR_OUTFILE" $OPTIONAL_ARGS
