@@ -8,6 +8,9 @@ inputs:
   aws-ssm-parameter:
     description: 'AWS SSM Parameter Store paths to fetch values from.'
     required: false
+  aws-sm-secret:
+    description: 'AWS Secrets Manager secret to fetch values from.'
+    required: false
 
 branding:
   color: yellow
@@ -41,4 +44,5 @@ runs:
       env:
         GHACTION_LABRADOR_CONFIG_FILE: ${{ inputs.config }}
         GHACTION_LABRADOR_AWS_SSM_PARAM: ${{ inputs.aws-ssm-parameter }}
+        GHACTION_LABRADOR_AWS_SM_SECRET: ${{ inputs.aws-sm-secret }}
       run: run-labrador.sh
