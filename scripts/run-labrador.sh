@@ -9,18 +9,21 @@ else
     GHACTION_LABRADOR_OUTFILE=./labrador-outfile.txt
 fi
 
-# Assemble optional CLI args.
 OPTIONAL_ARGS=""
+
+# --config
 if [ -n "$GHACTION_LABRADOR_CONFIG_FILE" ]; then
     echo "Using alternate config file: $GHACTION_LABRADOR_CONFIG_FILE"
     OPTIONAL_ARGS=" --config $GHACTION_LABRADOR_CONFIG_FILE "
 fi
 
+# --aws-param
+# Loop over multi-line variables to read multiple resources from input.
 if [ -n "$GHACTION_LABRADOR_AWS_SSM_PARAM" ]; then
     echo "Received AWS SSM Parameters to fetch:"
     while IFS= read -r resource; do
         if [[ -n $(echo $resource | tr -d '[:space:]') ]]; then
-            echo "    ...$resource..."
+            OPTIONAL_ARGS="$OPTIONAL_ARGS --aws-param $resource "
         fi
     done <<< "$GHACTION_LABRADOR_AWS_SSM_PARAM"
 fi
