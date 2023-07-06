@@ -17,6 +17,12 @@ if [ -n "$GHACTION_LABRADOR_CONFIG_FILE" ]; then
     OPTIONAL_ARGS=" --config $GHACTION_LABRADOR_CONFIG_FILE "
 fi
 
+# --aws-region
+if [ -n "$GHACTION_LABRADOR_AWS_REGION" ]; then
+    echo "Using alternate config file: $GHACTION_LABRADOR_AWS_REGION"
+    OPTIONAL_ARGS=" --aws-region $GHACTION_LABRADOR_AWS_REGION "
+fi
+
 # --aws-param
 # Loop over multi-line variables to read multiple resources from input.
 if [ -n "$GHACTION_LABRADOR_AWS_SSM_PARAM" ]; then
