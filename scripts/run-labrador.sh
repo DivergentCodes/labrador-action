@@ -1,15 +1,6 @@
 #!/bin/bash
 
-
-# Determine outfile. Use local file for development,
-# and env file in Github Actions.
-if [[ $GHACTION_LABRADOR_SET_ENV = "true" ]]; then
-    if [ -n $GITHUB_ENV ]; then
-        GHACTION_LABRADOR_OUTFILE="$GITHUB_ENV"
-    else
-        GHACTION_LABRADOR_OUTFILE=./labrador-outfile.txt
-    fi
-fi
+GHACTION_LABRADOR_OUTFILE=./labrador-outfile.txt
 
 OPTIONAL_ARGS=""
 
@@ -52,3 +43,15 @@ fi
 # Run Labrador.
 echo "./labrador fetch --verbose --outfile $GHACTION_LABRADOR_OUTFILE $OPTIONAL_ARGS"
 ./labrador fetch --verbose --outfile "$GHACTION_LABRADOR_OUTFILE" $OPTIONAL_ARGS
+
+# Apply fetched values as action outputs.
+if [ -n $GITHUB_OUTPUT ]; then
+    cat "$GHACTION_LABRADOR_OUTFILE" >> "$GITHUB_OUTPUT"
+fi
+
+# Apply fetched values as environment variables.
+if [[ $GHACTION_LABRADOR_SET_ENV = "true" ]]; then
+    if [ -n $GITHUB_ENV ]; then
+        cat "$GHACTION_LABRADOR_OUTFILE" >> "$GITHUB_ENV"
+    fi
+fi
