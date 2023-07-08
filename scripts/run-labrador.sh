@@ -1,6 +1,6 @@
 #!/bin/bash
 
-GHACTION_LABRADOR_OUTFILE=./labrador-outfile.txt
+GHACTION_LABRADOR_OUTFILE=/tmp/labrador-outfile.txt
 
 OPTIONAL_ARGS=""
 
