@@ -2,22 +2,26 @@
 name: 'Labrador Action'
 description: 'Fetch and load values as environment variables'
 inputs:
-  config:
-    description: 'Specify an alternative Labrador config file in the repo.'
-    required: false
-  set-env:
-    description: 'Set the fetched values as workflow environment variables.'
-    required: false
-    default: 'true'
   aws-region:
     description: 'Explicit AWS region, if different from configured environment variables.'
-    required: false
-  aws-ssm-parameter:
-    description: 'One or more AWS SSM Parameter Store paths to fetch values from. Each can be individual or wildcard.'
     required: false
   aws-sm-secret:
     description: 'One or more AWS Secrets Manager secrets to fetch values from.'
     required: false
+  aws-ssm-parameter:
+    description: 'One or more AWS SSM Parameter Store paths to fetch values from. Each can be individual or wildcard.'
+    required: false
+  config:
+    description: 'Specify an alternative Labrador config file in the repo.'
+    required: false
+  install-only:
+    description: 'Only install the Labrador binary in the workflow. Do not fetch any values.'
+    required: false
+    default: 'false'
+  set-env:
+    description: 'Set the fetched values as workflow environment variables.'
+    required: false
+    default: 'true'
 
 branding:
   color: yellow
@@ -47,6 +51,7 @@ runs:
       run: download-labrador.sh
 
     - name: Run Labrador
+      if: ${{ inputs.install-only == 'false' }}
       shell: bash
       env:
         GHACTION_LABRADOR_CONFIG_FILE: ${{ inputs.config }}

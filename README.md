@@ -143,13 +143,14 @@ env:
 
 Here are all the action inputs available through `with`:
 
-Input               | Default  | Required | Description
---------------------|----------|----------|-------------
-`config`            | `""`     | No       | Specify an alternative Labrador config file in the repo.
-`set-env`           | `"true"` | No       | Set the fetched values as workflow environment variables.
-`aws-region`        | `""`     | No       | Explicit AWS region, if different from configured environment variables.
-`aws-ssm-parameter` | `""`     | No       | One or more AWS SSM Parameter Store paths to fetch values from. Each can be individual or wildcard.
-`aws-sm-secret`     | `""`     | No       | One or more AWS Secrets Manager secrets to fetch values from.
+Input               | Default   | Required | Description
+--------------------|-----------|----------|-------------
+`aws-region`        | `""`      | No       | Explicit AWS region, if different from configured environment variables.
+`aws-sm-secret`     | `""`      | No       | One or more AWS Secrets Manager secrets to fetch values from.
+`aws-ssm-parameter` | `""`      | No       | One or more AWS SSM Parameter Store paths to fetch values from. Each can be individual or wildcard.
+`config`            | `""`      | No       | Specify an alternative Labrador config file in the repo.
+`install-only`      | `"false"` | No       | Only install the `Labrador` binary in the workflow.
+`set-env`           | `"true"`  | No       | Set the fetched values as workflow environment variables.
 
 
 ## Relevant Projects
