@@ -45,6 +45,8 @@ echo "./labrador fetch --verbose --outfile $GHACTION_LABRADOR_OUTFILE $OPTIONAL_
 ./labrador fetch --verbose --outfile "$GHACTION_LABRADOR_OUTFILE" $OPTIONAL_ARGS
 
 # Apply fetched values as action outputs.
+echo "foobar=turtle" >> "$GITHUB_OUTPUT"
+echo "FOOBAZ=duck" >> "$GITHUB_OUTPUT"
 if [ -n "$GITHUB_OUTPUT" ]; then
     echo "Applying fetched values as action outputs to $GITHUB_OUTPUT"
     cat "$GHACTION_LABRADOR_OUTFILE" >> "$GITHUB_OUTPUT"
