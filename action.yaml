@@ -3,16 +3,16 @@ name: 'Labrador Action'
 description: 'Fetch and load values as environment variables'
 inputs:
   config:
-    description: 'Specify an alternative config file in the repo.'
+    description: 'Specify an alternative Labrador config file in the repo.'
     required: false
   aws-region:
-    description: 'Explicit AWS region, if different from env vars.'
+    description: 'Explicit AWS region, if different from configured environment variables.'
     required: false
   aws-ssm-parameter:
-    description: 'AWS SSM Parameter Store paths to fetch values from.'
+    description: 'One or more AWS SSM Parameter Store paths to fetch values from. Each can be individual or wildcard.'
     required: false
   aws-sm-secret:
-    description: 'AWS Secrets Manager secret to fetch values from.'
+    description: 'One or more AWS Secrets Manager secrets to fetch values from.'
     required: false
 
 branding:
