@@ -5,6 +5,10 @@ inputs:
   config:
     description: 'Specify an alternative Labrador config file in the repo.'
     required: false
+  set-env:
+    description: 'Set the fetched values as workflow environment variables.'
+    required: false
+    default: 'true'
   aws-region:
     description: 'Explicit AWS region, if different from configured environment variables.'
     required: false
@@ -46,6 +50,7 @@ runs:
       shell: bash
       env:
         GHACTION_LABRADOR_CONFIG_FILE: ${{ inputs.config }}
+        GHACTION_LABRADOR_SET_ENV: ${{ inputs.set-env }}
         GHACTION_LABRADOR_AWS_REGION: ${{ inputs.aws-region }}
         GHACTION_LABRADOR_AWS_SSM_PARAM: ${{ inputs.aws-ssm-parameter }}
         GHACTION_LABRADOR_AWS_SM_SECRET: ${{ inputs.aws-sm-secret }}

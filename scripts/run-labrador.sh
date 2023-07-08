@@ -3,10 +3,12 @@
 
 # Determine outfile. Use local file for development,
 # and env file in Github Actions.
-if [ -n $GITHUB_ENV ]; then
-    GHACTION_LABRADOR_OUTFILE="$GITHUB_ENV"
-else
-    GHACTION_LABRADOR_OUTFILE=./labrador-outfile.txt
+if [[ $GHACTION_LABRADOR_SET_ENV = "true" ]]; then
+    if [ -n $GITHUB_ENV ]; then
+        GHACTION_LABRADOR_OUTFILE="$GITHUB_ENV"
+    else
+        GHACTION_LABRADOR_OUTFILE=./labrador-outfile.txt
+    fi
 fi
 
 OPTIONAL_ARGS=""
