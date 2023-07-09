@@ -27,10 +27,12 @@ inputs:
     description: 'Used to get the top level GITHUB_OUTPUT file value.'
     required: false
     default: ${{ github.env.GITHUB_OUTPUT }}
-outputs: ${{ steps.run-labrador.outputs }}
-  # foo:
-  #   value: ${{ steps.foo.outputs.selected-color }}
-  #   description: 'Test output from composite action.'
+# https://github.com/orgs/community/discussions/10529
+# Support dynamic outputs in Composite Actions #10529
+outputs:
+  foo:
+    value: ${{ steps.foo.outputs.selected-color }}
+    description: 'Test output from composite action.'
 
 branding:
   color: yellow
