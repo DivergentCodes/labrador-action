@@ -22,6 +22,10 @@ inputs:
     description: 'Set the fetched values as workflow environment variables.'
     required: false
     default: 'true'
+outputs:
+  foo:
+    value: ${{ steps.foo.outputs.selected-color }}
+    description: 'Test output from composite action.'
 
 branding:
   color: yellow
@@ -63,6 +67,7 @@ runs:
       run: run-labrador.sh
 
     - name: "Set the action outputs"
+      id: foo
       shell: bash
       run: |
-        echo "SELECTED_COLOR=blue" >> "$GITHUB_OUTPUT"
+        echo "selected-color=blue" >> "$GITHUB_OUTPUT"
