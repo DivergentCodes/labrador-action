@@ -26,6 +26,9 @@ outputs:
   foo:
     value: ${{ steps.foo.outputs.selected-color }}
     description: 'Test output from composite action.'
+  values:
+    value: ${{ steps.run-labrador.outputs }}
+    description: 'Fetched values.'
 
 branding:
   color: yellow
@@ -55,6 +58,7 @@ runs:
       run: download-labrador.sh
 
     - name: Run Labrador
+      id: run-labrador
       if: ${{ inputs.install-only == 'false' }}
       shell: bash
       env:
