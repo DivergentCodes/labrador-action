@@ -27,10 +27,10 @@ inputs:
     description: 'Used to get the top level GITHUB_OUTPUT file value.'
     required: false
     default: ${{ github.env.GITHUB_OUTPUT }}
-outputs:
-  foo:
-    value: ${{ steps.foo.outputs.selected-color }}
-    description: 'Test output from composite action.'
+outputs: ${{ steps.run-labrador.outputs }}
+  # foo:
+  #   value: ${{ steps.foo.outputs.selected-color }}
+  #   description: 'Test output from composite action.'
 
 branding:
   color: yellow
@@ -83,4 +83,4 @@ runs:
       shell: bash
       run: |
         echo "Top level outputs file: ${{ inputs.outputs-file }}"
-        echo "hope-top-level=working" >> ${{ inputs.outputs-file }}"
+        echo "hope-top-level=working" >> ${{ inputs.outputs-file }}
