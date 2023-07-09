@@ -31,9 +31,6 @@ outputs:
   foo:
     value: ${{ steps.foo.outputs.selected-color }}
     description: 'Test output from composite action.'
-  values:
-    value: ${{ steps.run-labrador.outputs }}
-    description: 'Fetched values.'
 
 branding:
   color: yellow
