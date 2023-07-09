@@ -47,11 +47,11 @@ echo "./labrador fetch --verbose --outfile $GHACTION_LABRADOR_OUTFILE $OPTIONAL_
 # Apply fetched values as action outputs.
 echo "foobar=turtle" >> "$GITHUB_OUTPUT"
 echo "FOOBAZ=duck" >> "$GITHUB_OUTPUT"
-if [ -n "$GITHUB_OUTPUT" ]; then
-    echo "Applying fetched values as action outputs to $GITHUB_OUTPUT"
-    cat "$GHACTION_LABRADOR_OUTFILE" >> "$GITHUB_OUTPUT"
-    cat "$GITHUB_OUTPUT"
-fi
+# if [ -n "$GITHUB_OUTPUT" ]; then
+#     echo "Applying fetched values as action outputs to $GITHUB_OUTPUT"
+#     cat "$GHACTION_LABRADOR_OUTFILE" >> "$GITHUB_OUTPUT"
+# fi
+cat "$GITHUB_OUTPUT"
 
 # Apply fetched values as environment variables.
 if [[ "$GHACTION_LABRADOR_SET_ENV" = "true" ]]; then
