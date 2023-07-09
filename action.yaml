@@ -26,7 +26,7 @@ inputs:
   outputs-file:
     description: 'Used to get the top level GITHUB_OUTPUT file value.'
     required: false
-    default: ${{ env.GITHUB_OUTPUT }}
+    default: ${{ github.env.GITHUB_OUTPUT }}
 outputs:
   foo:
     value: ${{ steps.foo.outputs.selected-color }}
