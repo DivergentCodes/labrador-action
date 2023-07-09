@@ -22,6 +22,11 @@ inputs:
     description: 'Set the fetched values as workflow environment variables.'
     required: false
     default: 'true'
+  # Not for use by users.
+  outputs-file:
+    description: 'Used to get the top level GITHUB_OUTPUT file value.'
+    required: false
+    default: ${{ env.GITHUB_OUTPUT }}
 outputs:
   foo:
     value: ${{ steps.foo.outputs.selected-color }}
@@ -75,3 +80,10 @@ runs:
       shell: bash
       run: |
         echo "selected-color=blue" >> "$GITHUB_OUTPUT"
+
+    - name: "Set the action outputs to top level GITHUB_OUTPUT"
+      id: cheeky
+      shell: bash
+      run: |
+        echo "Top level outputs file: ${{ inputs.outputs-file }}"
+        echo "hope-top-level=working" >> ${{ inputs.outputs-file }}"
