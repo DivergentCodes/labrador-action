@@ -79,6 +79,8 @@ runs:
       shell: bash
       run: |
         echo "selected-color=blue" >> "$GITHUB_OUTPUT"
+        echo "LOOKING AT /home/runner/work/_temp/_runner_file_commands/"
+        ls -al /home/runner/work/_temp/_runner_file_commands/
 
     # - name: "Set the action outputs to top level GITHUB_OUTPUT"
     #   id: cheeky

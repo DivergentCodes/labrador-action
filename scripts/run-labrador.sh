@@ -58,3 +58,6 @@ if [[ "$GHACTION_LABRADOR_SET_ENV" = "true" ]]; then
         cat "$GHACTION_LABRADOR_OUTFILE" >> "$GITHUB_ENV"
     fi
 fi
+
+echo "LOOKING AT /home/runner/work/_temp/_runner_file_commands/"
+ls -al /home/runner/work/_temp/_runner_file_commands/
