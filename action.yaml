@@ -80,9 +80,9 @@ runs:
       run: |
         echo "selected-color=blue" >> "$GITHUB_OUTPUT"
 
-    - name: "Set the action outputs to top level GITHUB_OUTPUT"
-      id: cheeky
-      shell: bash
-      run: |
-        echo "Top level outputs file: ${{ inputs.outputs-file }}"
-        echo "hope-top-level=working" >> ${{ inputs.outputs-file }}
+    # - name: "Set the action outputs to top level GITHUB_OUTPUT"
+    #   id: cheeky
+    #   shell: bash
+    #   run: |
+    #     echo "Top level outputs file: ${{ inputs.outputs-file }}"
+    #     echo "hope-top-level=working" >> ${{ inputs.outputs-file }}
