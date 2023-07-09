@@ -1,7 +1,5 @@
 #!/bin/bash
 
-GHACTION_LABRADOR_OUTFILE=/tmp/labrador-outfile.txt
-
 OPTIONAL_ARGS=""
 
 # --config
@@ -45,13 +43,12 @@ echo "./labrador fetch --verbose --outfile $GHACTION_LABRADOR_OUTFILE $OPTIONAL_
 ./labrador fetch --verbose --outfile "$GHACTION_LABRADOR_OUTFILE" $OPTIONAL_ARGS
 
 # Apply fetched values as action outputs.
-echo "SELECTED_COLOR=green" >> "$GITHUB_OUTPUT"
-# echo "foobar=turtle" >> "$GITHUB_OUTPUT"
-# echo "FOOBAZ=duck" >> "$GITHUB_OUTPUT"
-# if [ -n "$GITHUB_OUTPUT" ]; then
-#     echo "Applying fetched values as action outputs to $GITHUB_OUTPUT"
-#     cat "$GHACTION_LABRADOR_OUTFILE" >> "$GITHUB_OUTPUT"
-# fi
+echo "foobar=turtle" >> "$GITHUB_OUTPUT"
+echo "FOOBAZ=duck" >> "$GITHUB_OUTPUT"
+if [ -n "$GITHUB_OUTPUT" ]; then
+    echo "Applying fetched values as action outputs to $GITHUB_OUTPUT"
+    cat "$GHACTION_LABRADOR_OUTFILE" >> "$GITHUB_OUTPUT"
+fi
 cat "$GITHUB_OUTPUT"
 
 # Apply fetched values as environment variables.

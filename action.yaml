@@ -54,9 +54,15 @@ runs:
       if: ${{ inputs.install-only == 'false' }}
       shell: bash
       env:
+        GHACTION_LABRADOR_OUTFILE: /tmp/labrador-outfile.txt
         GHACTION_LABRADOR_CONFIG_FILE: ${{ inputs.config }}
         GHACTION_LABRADOR_SET_ENV: ${{ inputs.set-env }}
         GHACTION_LABRADOR_AWS_REGION: ${{ inputs.aws-region }}
         GHACTION_LABRADOR_AWS_SSM_PARAM: ${{ inputs.aws-ssm-parameter }}
         GHACTION_LABRADOR_AWS_SM_SECRET: ${{ inputs.aws-sm-secret }}
       run: run-labrador.sh
+
+    - name: "Set the action outputs"
+      shell: bash
+      run: |
+        echo "SELECTED_COLOR=blue" >> "$GITHUB_OUTPUT"
