@@ -1,13 +1,49 @@
 # labrador-action (alpha)
 
-Pull values (e.g. secrets and config) from remote stores, and automatically
-load them as environment variables in your workflow using
+Pull values (e.g. secrets and parameters) from remote stores, and automatically
+load them as environment variables in your Github workflow using
 [labrador](https://github.com/DivergentCodes/labrador). No need to copy values
-between remote stores and pipelines, use more than one store, or synchronize values.
+between remote stores and pipelines or synchronize values.
 
 A primary use case is secretless pipelines. By combining this with Github Actions'
 [OpenID Connect support](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/about-security-hardening-with-openid-connect),
 you can have zero secrets stored in your pipelines, including cloud API keys.
+
+## Contents
+
+- [Quickstart](#quickstart)
+- [Features](#features)
+  - [Supported Value Stores](#supported-value-stores)
+- [Example Usage](#example-usage)
+  - [Using a Labrador Configuration File](#using-a-labrador-configuration-file)
+  - [Using an Alternate Labrador Configuration File](#using-an-alternate-labrador-configuration-file)
+  - [Fetch Values From SSM Parameter Store Using Wildcard Paths](#fetch-values-from-ssm-parameter-store-using-wildcard-paths)
+  - [Fetch Values from a Different AWS Region](#fetch-values-from-a-different-aws-region)
+- [Reference](#reference)
+- [Similar Projects](#similar-projects)
+
+
+## Quickstart
+
+Make sure that your Github Actions workflow has access to the target value stores,
+ideally using Github Actions' support for
+[OpenID Connect to cloud providers](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/about-security-hardening-with-openid-connect).
+
+```yaml
+# .github/workflows/my-workflow.yaml
+
+...snip...
+
+      - uses: DivergentCodes/labrador-action@v0.0.4
+        with:
+          # The base path that Labrador will recursively fetch parameters from.
+          aws-ssm-parameter: /path/to/this/pipeline/specific/params/*
+          # The name of the secret that Labrador will fetch values from.
+          aws-sm-secret: name/of/the/secret
+
+...snip...
+```
+
 
 ## Features
 
@@ -35,27 +71,6 @@ you can have zero secrets stored in your pipelines, including cloud API keys.
 - **AWS SSM Parameter Store**: this action can pull individual parameters, or recursively pull a wildcard path with all child variables, as individual environment variables.
 - **AWS Secrets Manager**: this action can pull all key/value pairs in a single secret are loaded as individual environment variables.
 
-
-## Quickstart
-
-Make sure that your Github Actions workflow has access to the target value stores,
-ideally using Github Action's support for
-[OpenID Connect to cloud providers](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/about-security-hardening-with-openid-connect).
-
-```yaml
-# .github/workflows/my-workflow.yaml
-
-...snip...
-
-      - uses: DivergentCodes/labrador-action@v0.0.4
-        with:
-          # The base path that Labrador will recursively fetch parameters from.
-          aws-ssm-parameter: /path/to/this/pipeline/specific/params/*
-          # The name of the secret that Labrador will fetch values from.
-          aws-sm-secret: name/of/the/secret
-
-...snip...
-```
 
 ## Example Usage
 
@@ -153,7 +168,7 @@ Input               | Default   | Required | Description
 `set-env`           | `"true"`  | No       | Set the fetched values as workflow environment variables.
 
 
-## Relevant Projects
+## Similar Projects
 
 - [segmentio/chamber](https://github.com/segmentio/chamber)
 - [hashicorp/vault-action](https://github.com/hashicorp/vault-action)
